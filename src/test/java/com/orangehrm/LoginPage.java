@@ -7,6 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeTest;
+import org.junit.Assert;
 
 public class LoginPage {
 
@@ -18,6 +19,7 @@ public class LoginPage {
     WebElement username;
     WebElement password;
     WebElement loginButton;
+    WebElement sysAdminHomePage;
 
 
     @BeforeTest
@@ -39,6 +41,9 @@ public class LoginPage {
         password.sendKeys(adminPassword);
         loginButton = driver.findElement(By.xpath(".//*[@id='btnLogin']"));
         loginButton.click();
+
+        sysAdminHomePage = driver.findElement(By.xpath(".//*[@id='search-results']/div[1]/h1"));
+        Assert.assertTrue(sysAdminHomePage.getText().contains("Leave Types"));
     }
 
 
