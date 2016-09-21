@@ -1,12 +1,13 @@
 package steps;
 
 
-import com.orangehrm.Basepage;
+import com.orangehrm.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 
-public class LoginpageStep extends Basepage {
+public class LoginPageStep extends BasePage {
 
     public void enterLogInDetails(String username, String password) {
         driver.findElement(By.id("txtUsername")).sendKeys(username);
@@ -19,4 +20,9 @@ public class LoginpageStep extends Basepage {
         waitForElements(welcomeBox, driver);
     }
 
+    public void assertSuccessLogIn() {
+        WebElement welcomeBox = driver.findElement(By.id("welcome"));
+        Assert.assertTrue(welcomeBox.isDisplayed(), "You're not logged in");
+
+    }
 }
